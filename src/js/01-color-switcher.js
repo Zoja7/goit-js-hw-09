@@ -25,10 +25,10 @@ function startChangeBackground() {
 }
 
 function stopChangeBackground() {
-    
+
     startBtn.disabled = false;
     clearInterval(colorId);
-    console.log(`Interval with id ${colorId} has stopped!`);
+    console.log(`Interval with id ${colorId} has stopped!!!`);
  }
 
 
