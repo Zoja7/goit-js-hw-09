@@ -11,6 +11,7 @@ let targetDate = null;
 let countdownInterval = null;
 
 startButton.disabled = false;
+inputElement.disabled = false;
 
 const refs = {
 
@@ -54,7 +55,7 @@ flatpickr(inputElement, {
          
             
             Notify.info(`Date is in the future`)
-            startButton.disabled = false
+            startButton.disabled = false;
             targetDate = selectedDate;
             
 
@@ -79,6 +80,7 @@ startButton.addEventListener("click", () => {
         
         updateTimerUI(countdown);
         startButton.disabled = true;
+        inputElement.disabled = true;
 
         if (countdown <= 0 ) {
      
