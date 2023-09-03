@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 const inputElement = document.querySelector("#datetime-picker");
@@ -48,13 +49,15 @@ flatpickr(inputElement, {
         const selectedDate = selectedDates[0];
 
         if (selectedDate <= currentDate) {
-            alert("Please choose a date in the future.");
+         
+            Notify.warning(`Warning! The date: ${selectedDate} - is in the past`,() => { alert("Please choose a date in the future!!!"); });
             startButton.disabled = true;
         }
          else {
-            console.log("Date is in the future");
+      
+            Notify.info(`Date is in the future${selectedDate}`)
             startButton.disabled = false;
-            targetDate = selectedDate;
+            targetDate = selectedDate
         }
     }
 });
