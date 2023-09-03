@@ -10,6 +10,8 @@ const currentDate = Date.now();
 let targetDate = null;
 let countdownInterval = null;
 
+startButton.disabled = false;
+
 const refs = {
 
     daysUI: document.querySelector('[data-days]'),
@@ -48,17 +50,18 @@ flatpickr(inputElement, {
     
         const selectedDate = selectedDates[0];
 
-        if (selectedDate <= currentDate) {
+        if (selectedDate > currentDate) {
          
-            Notify.warning(`Warning! The date: ${selectedDate} - is in the past`,
-                () => { alert("Please choose a date in the future!!!"); });
+            
+            Notify.info(`Date is in the future`)
+            startButton.disabled = false
+            targetDate = selectedDate;
+            
+
+        } else {
+    
+             Notify.warning(`Warning! The date is in the past`),
             startButton.disabled = true;
-        }
-         else {
-      
-            Notify.info(`Date is in the future${selectedDate}`)
-            startButton.disabled = false;
-            targetDate = selectedDate
         }
     }
 });
@@ -69,17 +72,15 @@ startButton.addEventListener("click", () => {
     const countdown = convertMs(timeRemaining);
     console.log(countdown);
     
-    countdownInterval = setInterval(() => { // 1)shold became the method of class
+    countdownInterval = setInterval(() => { 
 
     const timeRemaining = targetDate - Date.now();
     const countdown = convertMs(timeRemaining);
         
-    updateTimerUI(countdown);
+        updateTimerUI(countdown);
+        startButton.disabled = true;
 
-        if (countdown.days === 0
-            && countdown.hours === 0
-            && countdown.minutes === 0
-            && countdown.seconds === 0) {
+        if (countdown <= 0 ) {
      
       clearInterval(countdownInterval);
     }
