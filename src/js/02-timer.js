@@ -82,7 +82,7 @@ startButton.addEventListener("click", () => {
         startButton.disabled = true;
         inputElement.disabled = true;
 
-        if (countdown <= 0 ) {
+        if (timeRemaining <= 0 ) {
      
       clearInterval(countdownInterval);
     }
