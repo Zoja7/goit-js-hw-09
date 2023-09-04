@@ -70,6 +70,7 @@ flatpickr(inputElement, {
 startButton.addEventListener("click", () => { 
 
     const timeRemaining = targetDate - Date.now();
+     
     const countdown = convertMs(timeRemaining);
     console.log(countdown);
     
@@ -82,9 +83,10 @@ startButton.addEventListener("click", () => {
         startButton.disabled = true;
         inputElement.disabled = true;
 
-        if (timeRemaining <= 0 ) {
-     
-      clearInterval(countdownInterval);
+        if (timeRemaining <= 1000)  {
+         
+            clearInterval(countdownInterval);
+          
     }
   }, 1000);
 
